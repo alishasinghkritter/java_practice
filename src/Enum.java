@@ -4,7 +4,7 @@ import java.lang.*;
 public class Enum {
     enum Number                     //enum Number with values
     {
-        ONE(1), TWO(2), three(3,'hello');
+        ONE(1), TWO(2), THREE(3);
         private int value; //private or not it will work
 
         private Number(int value) {
@@ -22,6 +22,34 @@ public class Enum {
 
     enum Size {                  //enum size
         SMALL, MEDIUM, LARGE, EXTRALARGE
+    }
+
+    //enum with multiple values
+    public enum person
+    {
+        buckey("nice","23"),
+        alisha("cutie","24"),
+        ankeeta("angry","20");
+
+        private final String desc;
+        private final String year;
+
+        person(String description, String age)
+        {
+            desc = description;
+            year = age;
+        }
+
+        public String getDesc()
+        {
+            return desc;
+        }
+
+        public String getyear()
+        {
+            return year;
+        }
+
     }
 
     public static void main(String args[]) {
@@ -83,6 +111,13 @@ public class Enum {
         System.out.println("\nAll car prices: ");
         for (Car c : Car.values())
             System.out.println(c + " costs " + c.getPrice() + " thousand dollars.");
+
+
+        //multiple values of enum
+        for(person p: person.values())
+        {
+            System.out.println(p+" "+p.getDesc()+" "+p.getyear());
+        }
     }
 
     /*
@@ -130,6 +165,8 @@ enum Car {
         return price;
     }
 }
+
+
 
 
 

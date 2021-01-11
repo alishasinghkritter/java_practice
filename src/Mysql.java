@@ -6,7 +6,7 @@ public class Mysql {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "kritter");
-            Statement s = c.createStatement();
+            //Statement s = c.createStatement();
 
             //insert data into table
                 /*s.executeUpdate("insert into department"+"(department_iD,name)"+"values('5','Chemistry')");
@@ -62,7 +62,7 @@ public class Mysql {
             System.out.println("Created table in the database");*/
 
             //delete/drop table
-            String delsql = "drop table registration";
+            /*String delsql = "drop table registration";
             if (s.execute(delsql) == true) {
                 System.out.println("Table is deleted from the database");
             } else {
@@ -73,7 +73,26 @@ public class Mysql {
                 System.out.println("Table is altered");
             } else {
                 System.out.println("altered error ");
-            }
+            }*/
+
+
+            /*Preapred Statement*/
+
+            /**PreparedStatement stmt = c.prepareStatement("insert into department values(?,?)");
+            stmt.setInt(1,8);
+            stmt.setString(2,"Arts");**/
+
+
+            /**PreparedStatement stmt = c.prepareStatement("update department set department_iD=? where name=?");
+            stt.setInt(1,6);
+            stmt.setString(2,"Arts");*/
+
+            PreparedStatement stmt = c.prepareStatement("delete from department where department_iD=?");
+            stmt.setInt(1,6);
+
+            int i = stmt.executeUpdate();
+            System.out.println(i+" record deleted");
+
             c.close(); //close the connection
         } catch (Exception e) {
             System.out.println(e);
